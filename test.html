@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VR-Billiards</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="js/three.js"></script>
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/STLLoader.js"></script>
+    <script src="js/OBJLoader.js"></script>
+    <script src="js/DDSLoader.js"></script>
+    <script src="js/MTLLoader.js"></script>
+    <script src="js/cannon.js"></script>
+    <script src="js/cannon.demo.js"></script>
+    <script src="js/dat.gui.js"></script>
+    <script src="js/TrackballControls.js"></script>
+    <script src="js/Detector.js"></script>
+    <script src="js/Stats.js"></script>
+    <script src="js/smoothie.js"></script>
+    <script src="myjs/init.js"></script>
+    <script src="myjs/cannonInit.js"></script>
+    <script src="myjs/rule.js"></script>
+    <script src="js/LightProbeGenerator.js"></script>
+
+
+</head>
+<body>
+
+
+<img src="img/hand.png" id="hand" />
+
+<div id="player1">
+    <img src="img/player1.png" />
+</div>
+
+<div id="player2">
+    <img src="img/player2.png" />
+</div>
+
+<div id="powerWrap">
+    <div id="power">
+    </div>
+</div>
+<img id="powerBorder" src="img/bill_power0.png" />
+
+
+
+<div id="rule_bg">
+    <div id="rule">
+        How to play:<br/>
+        <div class="space"></div>
+        1. Rotate the camera - hold the mouse or use A or D<br/>
+        <div class="space"></div>
+        2. Control the power - hold W to add power, hold S to reduce power<br/>
+        <div class="space"></div>
+        3. Strike the ball - SPACE<br/>
+        <div class="space"></div>
+
+
+    </div>
+    <div id="notice">
+        Press E to enter billiards game!
+    </div>
+</div>
+<div id="loader_bg">
+    <div id="loader">
+        <div class="ball"></div>
+        <div class="ball1"></div>
+        Loading...
+    </div>
+</div>
+
+
+<div id="GameOver1">
+    <img src="img/gameover1.png"/>
+</div>
+
+<div id="GameOver2">
+    <img src="img/gameover2.png"/>
+</div>
+
+<canvas id="mainCanvas"></canvas>
+
+<div id="replay">
+    <img src="img/replay.png" />
+</div>
+
+<div id="exit">
+    <img src="img/exit.png" />
+</div>
+
+</body>
+
+
+<script>
+    let scene, camera,camera2, renderer,raycaster, leftPress, cube,lightProbe, arrowFront, arrowFrontX, arrowFrontZ;
+
+    let left, right, PowerDown, PowerUp,bend,stand;
+    var Power=20;
+    var world;
+    var fixedTimeStep = 1 / 60;
+    var maxSubSteps = 3;
+    var mass = 5;
+    var lastTime;
+    var ifclick=false;
+    var potentialWhite,potentialWhiteX=-8,potentialWhiteZ=0;
+
+    var meshes = [];
+    var bodies = [];
+    var bodies1 = [];
+    var bodies2 = [];
+    var meshes1 = [];
+    var meshes2 = [];
+    var cue0;
+    var marks= [];
+    var ifplace=false;
+
+    var player1kind=0;
+    var player2kind=0;
+
+    var Fallen=[];
+
+    var hit=false;
+    var rotation=false;
+
+    var cam_rot=[180 + Math.random(),180 + Math.random()];
+    var sphereMaterial,wallMaterial,groundMaterial,cylinderMaterial;
+    var cueWrap = new THREE.Group;
+    var Turn=0;//0 represents player0, 1 represent player2
+
+
+    var ifGameover=0;
+    var ifplaceRandom=0;
+    var ifGetScore=0;
+    var iffoul=0;
+
+    var time=0;
+
+    var Scoreperiod=false;
+
+    var rotateStart = new THREE.Vector2();
+    var rotateEnd = new THREE.Vector2();
+    var rotateDelta = new THREE.Vector2();
+
+    var loadingcount=4;
+
+
+</script>
+</html>
