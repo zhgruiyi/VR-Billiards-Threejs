@@ -628,7 +628,7 @@ function animate(time) {
 
 $(window).mousemove(function (event) {
     event.preventDefault();
-    if((marks===undefined)&&marks[0]==0&&ifplace){
+    if(marks[0]==0&&ifplace){
         if(ifclick){
             camera.position.set(-22, 8, 0);
             camera.lookAt(8,0.49,0);
